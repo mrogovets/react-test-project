@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import ActionAreaCard from "./ActionAreaCard";
 
-export default function MyContainer() {
+export default function MyContainer({ dataItems }) {
   return (
     <React.Fragment>
       <CssBaseline />
