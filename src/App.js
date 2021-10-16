@@ -40,7 +40,7 @@ function App() {
             marginTop: "1rem",
             marginBottom: "1rem",
           }}>
-          <MyPagination />
+          <MyPagination fetchedDataLength={data.length} />
         </div>
       </StyledEngineProvider>
     </div>
