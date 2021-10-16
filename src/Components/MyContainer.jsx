@@ -8,8 +8,26 @@ export default function MyContainer() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container fixed>
-        <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }}>
+      <Container maxWidth="lg">
+        <Box
+          sx={{ bgcolor: "#cfe8fc", height: "1000hv" }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+            paddingTop: "1rem",
+          }}>
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
+          <ActionAreaCard />
           <ActionAreaCard />
         </Box>
       </Container>
