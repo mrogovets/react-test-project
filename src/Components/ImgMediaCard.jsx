@@ -13,8 +13,8 @@ export default function ImgMediaCard({
   url,
   thumbnailUrl,
 }) {
-  url =
-    "https://cdn.4mation.com.au/app/uploads/2020/04/07094618/react-native-centered.png";
+  // url =
+  //   "https://cdn.4mation.com.au/app/uploads/2020/04/07094618/react-native-centered.png";
   return (
     <Card sx={{ maxWidth: 345 }} style={{ marginBottom: "1rem" }}>
       <CardMedia

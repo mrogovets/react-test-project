@@ -25,17 +25,19 @@ export default function MyContainer({ dataItems }) {
             paddingTop: "1rem",
           }}>
           {cardInfo.length ? (
-            cardInfo.map((item) => {
-              return (
-                <ImgMediaCard
-                  key={item.id}
-                  id={item.id}
-                  albumId={item.albumId}
-                  title={item.title}
-                  url={item.url}
-                  thumbnailUrl={item.thumbnailUrl}
-                />
-              );
+            cardInfo.map((item, index) => {
+              while (index < 12) {
+                return (
+                  <ImgMediaCard
+                    key={item.id}
+                    id={item.id}
+                    albumId={item.albumId}
+                    title={item.title}
+                    url={item.url}
+                    thumbnailUrl={item.thumbnailUrl}
+                  />
+                );
+              }
             })
           ) : (
             <Preloader />
