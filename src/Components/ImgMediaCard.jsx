@@ -6,22 +6,29 @@ import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Typography from "@mui/material/Typography";
 
-export default function ImgMediaCard() {
+export default function ImgMediaCard({
+  id,
+  albumId,
+  title,
+  url,
+  thumbnailUrl,
+}) {
+  url =
+    "https://cdn.4mation.com.au/app/uploads/2020/04/07094618/react-native-centered.png";
   return (
     <Card sx={{ maxWidth: 345 }} style={{ marginBottom: "1rem" }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt={`img ID: ${id}`}
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={url}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {`ID: ${id} from albumId: ${albumId}`}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {title}
         </Typography>
       </CardContent>
       <CardActions style={{ display: "flex", justifyContent: "center" }}>
