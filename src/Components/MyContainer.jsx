@@ -12,16 +12,17 @@ export default function MyContainer({ dataItems, pageNumber }) {
     setCardInfo(dataItems);
   }, [dataItems]);
 
-  const filterData = (propsData) => {
+  const filterData = (propsData, paginationPage) => {
     if (propsData.length) {
+      const upIndex = 12 * paginationPage;
+      const lowIndex = upIndex - 12;
+
       const arrayForRender = cardInfo.filter(
-        (item) => item.id > 0 && item.id <= 12
+        (item) => item.id > lowIndex && item.id <= upIndex
       );
       return arrayForRender;
     }
   };
-
-  console.log(pageNumber); // delete this line
 
   return (
     <React.Fragment>
@@ -37,7 +38,7 @@ export default function MyContainer({ dataItems, pageNumber }) {
           }}>
           {cardInfo.length ? (
             //----------------------------
-            filterData(cardInfo).map((item) => {
+            filterData(cardInfo, pageNumber).map((item) => {
               return (
                 <ImgMediaCard
                   key={item.id}
