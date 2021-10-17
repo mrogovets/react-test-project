@@ -6,7 +6,7 @@ import ImgMediaCard from "./ImgMediaCard";
 import Preloader from "./Preloader";
 import ModalWindow from "./ModalWindow";
 
-export default function MyContainer({ dataItems, pageNumber }) {
+export default function MyContainer({ dataItems, pageNumber, deleteItem }) {
   const [cardInfo, setCardInfo] = useState([]);
   const [id, setId] = useState(1);
   const [url, setUrl] = useState("");
@@ -73,6 +73,7 @@ export default function MyContainer({ dataItems, pageNumber }) {
                   getIdCard={(getId, getUrl, getTitle) =>
                     getInfoCard(getId, getUrl, getTitle)
                   }
+                  deleteItem={deleteItem}
                 />
               );
             })

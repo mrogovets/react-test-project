@@ -31,11 +31,23 @@ function App() {
     setPageNumber(getPageNumber);
   };
 
+  const deleteItem = (id) => {
+    const idxElDel = data.findIndex((el) => el.id === id);
+    const before = data.slice(0, idxElDel);
+    const after = data.slice(idxElDel + 1);
+    const newData = [...before, ...after];
+    setData(newData);
+  };
+
   return (
     <div className="App">
       <StyledEngineProvider injectFirst>
         <SearchAppBar />
-        <MyContainer dataItems={data} pageNumber={pageNumber} />
+        <MyContainer
+          dataItems={data}
+          pageNumber={pageNumber}
+          deleteItem={(id) => deleteItem(id)}
+        />
         <div
           className="container-pagination"
           style={{

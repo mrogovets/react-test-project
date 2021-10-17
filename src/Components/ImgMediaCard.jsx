@@ -13,15 +13,21 @@ export default function ImgMediaCard({
   url,
   thumbnailUrl,
   getIdCard,
+  deleteItem,
 }) {
   const clickHandler = () => {
     getIdCard(id, url, title);
   };
+
+  const handlerDeleteItem = () => {
+    deleteItem(id);
+  };
+
   return (
     <Card sx={{ width: 345 }} style={{ marginBottom: "1rem" }}>
       <CardMedia
         component="img"
-        alt={`img ID: ${id}`}
+        alt={`imgID: ${id}`}
         height="150"
         image={thumbnailUrl}
         onClick={clickHandler}
@@ -35,7 +41,11 @@ export default function ImgMediaCard({
         </Typography>
       </CardContent>
       <CardActions style={{ display: "flex", justifyContent: "center" }}>
-        <Button size="small" variant="outlined" startIcon={<DeleteIcon />}>
+        <Button
+          size="small"
+          variant="outlined"
+          startIcon={<DeleteIcon />}
+          onClick={handlerDeleteItem}>
           Delete this image
         </Button>
       </CardActions>
