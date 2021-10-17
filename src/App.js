@@ -7,8 +7,8 @@ import MyPagination from "./Components/MyPagination";
 
 function App() {
   const URL = "http://jsonplaceholder.typicode.com/photos";
-
   const [data, setData] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     const getData = async () => {
@@ -27,11 +27,15 @@ function App() {
     getData();
   }, []);
 
+  const getPage = (getPageNumber) => {
+    setPageNumber(getPageNumber);
+  };
+
   return (
     <div className="App">
       <StyledEngineProvider injectFirst>
         <SearchAppBar />
-        <MyContainer dataItems={data} />
+        <MyContainer dataItems={data} pageNumber={pageNumber} />
         <div
           className="container-pagination"
           style={{
@@ -40,7 +44,10 @@ function App() {
             marginTop: "1rem",
             marginBottom: "1rem",
           }}>
-          <MyPagination fetchedDataLength={data.length} />
+          <MyPagination
+            fetchedDataLength={data.length}
+            getPage={(page) => getPage(page)}
+          />
         </div>
       </StyledEngineProvider>
     </div>

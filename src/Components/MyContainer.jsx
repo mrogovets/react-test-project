@@ -5,12 +5,23 @@ import Container from "@mui/material/Container";
 import ImgMediaCard from "./ImgMediaCard";
 import Preloader from "./Preloader";
 
-export default function MyContainer({ dataItems }) {
+export default function MyContainer({ dataItems, pageNumber }) {
   const [cardInfo, setCardInfo] = useState([]);
 
   useEffect(() => {
     setCardInfo(dataItems);
   }, [dataItems]);
+
+  const filterData = (propsData) => {
+    if (propsData.length) {
+      const arrayForRender = cardInfo.filter(
+        (item) => item.id > 0 && item.id <= 12
+      );
+      return arrayForRender;
+    }
+  };
+
+  console.log(pageNumber); // delete this line
 
   return (
     <React.Fragment>
@@ -25,21 +36,21 @@ export default function MyContainer({ dataItems }) {
             paddingTop: "1rem",
           }}>
           {cardInfo.length ? (
-            cardInfo.map((item, index) => {
-              while (index < 12) {
-                return (
-                  <ImgMediaCard
-                    key={item.id}
-                    id={item.id}
-                    albumId={item.albumId}
-                    title={item.title}
-                    url={item.url}
-                    thumbnailUrl={item.thumbnailUrl}
-                  />
-                );
-              }
+            //----------------------------
+            filterData(cardInfo).map((item) => {
+              return (
+                <ImgMediaCard
+                  key={item.id}
+                  id={item.id}
+                  albumId={item.albumId}
+                  title={item.title}
+                  url={item.url}
+                  thumbnailUrl={item.thumbnailUrl}
+                />
+              );
             })
           ) : (
+            //-----------------------
             <Preloader />
           )}
         </Box>
