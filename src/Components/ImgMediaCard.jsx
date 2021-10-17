@@ -12,16 +12,19 @@ export default function ImgMediaCard({
   title,
   url,
   thumbnailUrl,
+  getIdCard,
 }) {
-  // url =
-  //   "https://cdn.4mation.com.au/app/uploads/2020/04/07094618/react-native-centered.png";
+  const clickHandler = () => {
+    getIdCard(id, url, title);
+  };
   return (
     <Card sx={{ width: 345 }} style={{ marginBottom: "1rem" }}>
       <CardMedia
         component="img"
         alt={`img ID: ${id}`}
-        height="140"
-        image={url}
+        height="150"
+        image={thumbnailUrl}
+        onClick={clickHandler}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

@@ -4,9 +4,14 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import ImgMediaCard from "./ImgMediaCard";
 import Preloader from "./Preloader";
+import ModalWindow from "./ModalWindow";
 
 export default function MyContainer({ dataItems, pageNumber }) {
   const [cardInfo, setCardInfo] = useState([]);
+  const [id, setId] = useState(1);
+  const [url, setUrl] = useState("");
+  const [title, setTitle] = useState("");
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
     setCardInfo(dataItems);
@@ -24,8 +29,26 @@ export default function MyContainer({ dataItems, pageNumber }) {
     }
   };
 
+  const getInfoCard = (getId, getUrl, getTitle) => {
+    setId(getId);
+    setUrl(getUrl);
+    setTitle(getTitle);
+    setIsOpenModal(true);
+  };
+
+  const handleClose = (isClose) => {
+    setIsOpenModal(false);
+  };
+
   return (
     <React.Fragment>
+      <ModalWindow
+        id={id}
+        url={url}
+        title={title}
+        isOpenModal={isOpenModal}
+        handleClose={(isClose) => handleClose(isClose)}
+      />
       <CssBaseline />
       <Container maxWidth="lg" style={{ marginTop: "0.5rem" }}>
         <Box
@@ -47,6 +70,9 @@ export default function MyContainer({ dataItems, pageNumber }) {
                   title={item.title}
                   url={item.url}
                   thumbnailUrl={item.thumbnailUrl}
+                  getIdCard={(getId, getUrl, getTitle) =>
+                    getInfoCard(getId, getUrl, getTitle)
+                  }
                 />
               );
             })
