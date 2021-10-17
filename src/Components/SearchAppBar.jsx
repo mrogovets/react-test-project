@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import SelectTextField from "./SelectTextField";
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ getAlbumId }) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -30,7 +30,7 @@ export default function SearchAppBar() {
           <Typography variant="h6" noWrap component="div">
             Select albumId for element sorting by pipe-tech
           </Typography>
-          <SelectTextField />
+          <SelectTextField getAlbumId={getAlbumId} />
         </Toolbar>
       </AppBar>
     </Box>

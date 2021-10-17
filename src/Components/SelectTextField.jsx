@@ -3,10 +3,10 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
-export default function SelectTextField() {
+export default function SelectTextField({ getAlbumId }) {
   const renderOptionsElem = () => {
     let optionsElem = [];
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 0; i <= 100; i++) {
       optionsElem.push(
         <option key={i} value={i}>
           {i}
@@ -17,7 +17,7 @@ export default function SelectTextField() {
   };
 
   const handleChange = (event) => {
-    console.log(event.target.value);
+    getAlbumId(event.target.value);
   };
 
   return (
@@ -37,7 +37,7 @@ export default function SelectTextField() {
           albumID
         </InputLabel>
         <NativeSelect
-          defaultValue={1}
+          defaultValue={0}
           inputProps={{
             name: "albumID",
             id: "uncontrolled-native",
