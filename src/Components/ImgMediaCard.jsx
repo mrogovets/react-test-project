@@ -16,7 +16,7 @@ export default function ImgMediaCard({
   // url =
   //   "https://cdn.4mation.com.au/app/uploads/2020/04/07094618/react-native-centered.png";
   return (
-    <Card sx={{ maxWidth: 345 }} style={{ marginBottom: "1rem" }}>
+    <Card sx={{ width: 345 }} style={{ marginBottom: "1rem" }}>
       <CardMedia
         component="img"
         alt={`img ID: ${id}`}
