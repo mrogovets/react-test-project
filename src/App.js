@@ -24,7 +24,6 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       const id = parseInt(albumId);
-      console.log(id);
       try {
         const res = await fetch(URL);
         if (res.ok) {
