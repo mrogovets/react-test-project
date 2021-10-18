@@ -23,7 +23,7 @@ export default function MyContainer({ dataItems, pageNumber, deleteItem }) {
       const lowIndex = upIndex - 12;
 
       const arrayForRender = cardInfo.filter(
-        (item) => item.id > lowIndex && item.id <= upIndex
+        (item, index) => index > lowIndex && index <= upIndex
       );
       return arrayForRender;
     }

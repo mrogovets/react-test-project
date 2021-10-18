@@ -9,7 +9,8 @@ export default function MyPagination({ fetchedDataLength, getPage }) {
   };
   useEffect(() => {
     getPage(page);
-  });
+  }, [getPage, page]);
+
   return (
     <Stack spacing={2}>
       <Pagination

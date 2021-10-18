@@ -11,15 +11,30 @@ function App() {
   const URL = "http://jsonplaceholder.typicode.com/photos";
   const [data, setData] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
-  const [albumId, setAlbumId] = useState(1);
+  const [albumId, setAlbumId] = useState(0);
+
+  const pipeFilter = (fetchedArr, id) => {
+    let dataAfterFilter = [];
+    const source = from(fetchedArr);
+    const filteringData = source.pipe(filter((elem) => elem.albumId === id));
+    filteringData.subscribe((val) => dataAfterFilter.push(val));
+    return dataAfterFilter;
+  };
 
   useEffect(() => {
     const getData = async () => {
+      const id = parseInt(albumId);
+      console.log(id);
       try {
         const res = await fetch(URL);
         if (res.ok) {
           const resData = await res.json();
-          setData(resData);
+          if (!id) {
+            setData(resData);
+          } else {
+            // setData(resData.filter((item) => item.albumId === id)); // it is done!
+            setData(pipeFilter(resData, id));
+          }
         } else {
           throw new Error(`Failed to get address data ${URL}`);
         }
@@ -28,7 +43,7 @@ function App() {
       }
     };
     getData();
-  }, []);
+  }, [albumId]);
 
   const getPage = (getPageNumber) => {
     setPageNumber(getPageNumber);
@@ -46,23 +61,12 @@ function App() {
     setAlbumId(id);
   };
 
-  const pipeFilter = () => {
-    let dataAfterFilter = [];
-    const source = from(data);
-    const filteringData = source.pipe(
-      filter((elem) => elem.albumId === albumId)
-    );
-    filteringData.subscribe((val) => dataAfterFilter.push(val));
-    return dataAfterFilter;
-  };
-
   return (
     <div className="App">
       <StyledEngineProvider injectFirst>
         <SearchAppBar getAlbumId={(id) => getAlbumId(id)} />
         <MyContainer
           dataItems={data}
-          // dataItems={pipeFilter}
           pageNumber={pageNumber}
           deleteItem={(id) => deleteItem(id)}
           albumId={albumId}
@@ -77,7 +81,6 @@ function App() {
           }}>
           <MyPagination
             fetchedDataLength={data.length}
-            // fetchedDataLength={pipeFilter.length}
             getPage={(page) => getPage(page)}
           />
         </div>
